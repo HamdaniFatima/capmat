@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  <h2 class="mb-3">Confirmer la suppression</h2>
+  <p class="lead">Voulez-vous vraiment supprimer le projet <strong>"{{ quiz.titre_projet }}"</strong>? Il n'y a pas de retour en arrière.</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger btn-lg">Supprimer</button>
+    <a href="{% url 'students:lanceur_projet_home' %}" class="btn btn-outline-secondary btn-lg" role="button">Annuler</a>
+  </form>
+{% endblock %}

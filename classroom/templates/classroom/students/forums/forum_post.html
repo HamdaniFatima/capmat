@@ -1,0 +1,156 @@
+
+              
+{% extends "base.html" %}
+
+
+
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+
+
+
+
+
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<style>
+
+
+
+
+
+a.btn:hover {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+a.btn {
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -o-transform: scale(0.8);
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+}
+
+</style>
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+
+
+
+    <div class="container">
+      <div class="row">
+    <a href="#" class="btn btn-primary a-btn-slide-text">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <span><strong>Participer</strong></span>            
+        </a>
+   
+  
+      </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="col-md-12 card mb-4  mt-3 left  top">
+      <div class="card-body">
+        
+        <h1>{% block title %} {{ post.titre_projet }} {% endblock title %}</h1>
+        <p class=" text-muted">{{ post.owner.username }} | {{post.created_at | naturaltime}}</p>
+        <p class="card-text ">{{ post.description_projet  | safe }}</p>
+        <p class="card-text ">{{ post.type_evt  | safe }}</p>
+        <p class="card-text ">{{ post.nature_evtt  | safe }}</p>
+        <p class="card-text ">{{ post.grandeur_evt | safe }}</p>
+        <p class="card-text ">{{ post.envirennoment_evt  | safe }}</p>
+        <p class="card-text ">{{ post.etendue  | safe }}</p>
+        <p class="card-text ">{{ post.sensibilite   | safe }}</p>
+        <p class="card-text ">{{ post.resolution | safe }}</p>
+        <p class="card-text ">{{ post.rapidite  | safe }}</p>
+        <p class="card-text ">{{ post.finance  | safe }}</p>
+        {{ post.file_1 }}
+        {{ post.file_2  }}
+        {{ post.file_3   }}
+
+
+
+
+
+
+
+       
+        {% if request.user == post.user %} 
+      
+        <a href="{% url 'edit_projet' post.pk %}">Edit</a>
+     
+        <form method="post" action="{% url 'forum-delete' post.id %}"  enctype="multipart/form-data">
+         <input type="submit" value="Delete">
+        </form>
+        {% else %}
+    
+
+        {% endif  %}
+    
+      
+       
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+    
+
+    <div class="col-md-12 card mb-4  mt-3 ">
+      <div class="card-body">
+        <!-- comments -->
+        <h2>{{ comments.count }} comments</h2>
+
+        {% for comment in comments %}
+        <div class="comments" style="padding: 10px;">
+          <p class="font-weight-bold">
+            {{ comment.name }}
+            <span class=" text-muted font-weight-normal">
+              {{ comment.created_on }}
+            </span>
+          </p>
+          {{ comment.body | linebreaks }}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-md-12 card mb-4  mt-3 ">
+      <div class="card-body">
+        {% if new_comment %}
+        <div class="alert alert-success" role="alert">
+          Your comment is awaiting moderation
+        </div>
+        {% else %}
+        <h3>Leave a comment</h3>
+        <form method="post" style="margin-top: 1.3em;">
+          {{ comment_form.as_p }}
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+        </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock%}

@@ -1,0 +1,13 @@
+
+{% block title %} List Forum{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+  <h1>Forums</h1> 
+    <ul>
+        {% for forum in object_list %}
+            <li>{{forum.title}} | <a href="{% url 'students:forum_by_profile' forum.owner %}">{{forum.owner}}</a> | <span style="font-size: 12px;"><i>{{forum.created_at}}</i></span></li><br>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock%}

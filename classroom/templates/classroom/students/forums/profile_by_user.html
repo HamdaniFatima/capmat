@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %} List Forum{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+  <h1>Forums</h1> 
+    <ul>
+        {% for forum in objForums %} 
+        
+            <li><a href="">{{forum.email}}</a> |  <a href="">{{forum.nom}}</a> | <span style="font-size: 12px;"><i>{{forum.prenom}}</i></span></li><br>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock%}

@@ -1,0 +1,397 @@
+{% load crispy_forms_tags %}
+{% load humanize %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>CapMat </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="fonts/icomoon/style.css' %}">
+
+  <link rel="stylesheet" href="{%  static  'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{%  static  'css/jquery-ui.css' %}">
+  <link rel="stylesheet" href="{%  static  'css/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{%  static  'css/owl.theme.default.min.css' %}">
+  <link rel="stylesheet" href="{%  static  'css/owl.theme.default.min.css' %}">
+
+  <link rel="stylesheet" href="{%  static  'css/jquery.fancybox.min.css' %}">
+
+  <link rel="stylesheet" href="{%  static  'css/bootstrap-datepicker.css' %}">
+
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css' %}">
+
+  <link rel="stylesheet" href="{%  static  'css/aos.css' %}">
+
+  <link rel="stylesheet" href="{%  static  'css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+
+
+<style>
+
+
+a.btn:hover {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+a.btn {
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -o-transform: scale(0.8);
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+}
+
+
+p {
+     width: 500px;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+}
+
+
+
+.box {
+
+  background-color: lightgray;
+  padding: 40px;
+  margin: 40px;
+  width: 600px;
+  height: 200px;
+}
+
+.alternate {
+  box-sizing: border-box;
+}
+    
+
+
+</style>
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+
+
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+
+    <header class="site-navbar" role="banner" style="background-image: url({% static 'images/img_2.jpg' %});" data-aos="fade">
+      
+
+ 
+
+
+
+      <div class="container">
+        <div class="row align-items-center">
+          
+          <div class="col-6 col-xl-2">
+            <h1 class="mb-0 site-logo"><a href="index.html" class="h2 mb-0" style="color: #007bff">CapMat<span class="text-primary">.</span> </a></h1>
+          </div>
+          <div class="col-12 col-md-10 d-none d-xl-block">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+
+   
+                    <li><a href="" class="nav-link">Logged in as <strong>{{ user.username }}</strong></a></li>
+                  
+                  </ul>
+                </li>
+
+              </ul>
+            </nav>
+          </div>
+
+
+
+          <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a></div>
+
+        </div>
+      </div>
+
+
+
+
+
+
+    </header>
+
+
+
+  
+    
+    
+    
+    <section class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 blog-content">
+         
+
+         <a href="{% url 'students:projet_add' %}" class="btn btn-primary a-btn-slide-text">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              <span><strong></strong></span>            
+          </a>
+          <a href="{% url 'students:projet_change' post.pk %}" class="btn btn-primary a-btn-slide-text">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <span><strong></strong></span>            
+        </a>
+        <a href="{% url 'students:projet_delete' post.pk  %}" class="btn btn-primary a-btn-slide-text">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+           <span><strong></strong></span>            
+       </a>
+
+       <a href="{% url 'students:lanceur_projet_home'  %}" class="btn btn-primary a-btn-slide-text">
+        <span  aria-hidden="true"></span>
+         <span><strong>Annuler</strong></span>            
+     </a>
+            {% if request.user == post.user %} 
+  
+            <a href="{% url 'edit_projet' post.pk %}" class="btn btn-primary a-btn-slide-text">
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              <span><strong>Edit</strong></span>            
+          </a>
+      
+          <a href="#" class="btn btn-primary a-btn-slide-text">
+             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              <span><strong>Delete</strong></span>            
+          </a>
+         
+            {% else %}
+    
+            {% endif  %}
+
+            <h1> {{ post.titre_projet }}</h1>
+            <p class=" text-muted">{{ post.user.username }} | {{post.created_at | naturaltime}}</p>
+            <div class="col-md-8 card mb-4  mt-3 left  top">
+              <div class="card-body">
+              
+
+
+
+
+                 <label for="textarea-input" class=" form-control-label">Déscription du projet</label>
+                  <p name="textarea-input" id="textarea-input" rows="9" placeholder="Content..." class="form-control">{{ post.description_projet | safe }}</textarea></p>
+              
+              
+                    <label for="textarea-input" class=" form-control-label">Type du capteur </label>
+                    <p name="textarea-input" id="textarea-input" rows="9" placeholder="Content..." class="form-control">{{ post.type_capteur | safe }}</textarea></p>
+                
+                      <label for="textarea-input" class=" form-control-label">Type d’événement à détecter </label>
+                      <p name="textarea-input" id="textarea-input" rows="9" placeholder="Content..." class="form-control">{{ post.type_evt | safe }}</textarea></p>
+                  
+                        <label for="textarea-input" class=" form-control-label">Nature d’événement à détecter</label>
+                        <p name="textarea-input" id="textarea-input" rows="9" placeholder="Content..." class="form-control">{{ post.nature_evt | safe }}</textarea></p>
+                    
+                          <label for="textarea-input" class=" form-control-label">Grandeur de l’événement à détecter</label>
+                          <p name="textarea-input" id="textarea-input" rows="9" placeholder="Content..." class="form-control">{{ post.grandeur_evt | safe }}</textarea></p>
+                          <label for="textarea-input" class=" form-control-label">L'environnement de l'événement à détecter</label>
+                          <p name="textarea-input" id="textarea-input" rows="9" placeholder="Content..." class="form-control">{{ post.envirennoment_evt | safe }}</textarea></p>
+                          <label for="textarea-input" class=" form-control-label">Etendue de mesure</label>
+                          <p name="textarea-input" id="textarea-input" rows="9" placeholder="Content..." class="form-control">{{ post.etendue | safe }}</textarea></p>
+                          <label for="textarea-input" class=" form-control-label">Sensibilité</label>
+                          <p name="textarea-input" id="textarea-input" rows="9" placeholder="Content..." class="form-control">{{ post.sensibilite | safe }}</textarea></p>
+                                  
+                          <label for="textarea-input" class=" form-control-label">Résolution</label>
+                          <p name="textarea-input" id="textarea-input" rows="9" placeholder="Content..." class="form-control">{{ post.resolution | safe }}</textarea></p>
+                            
+                          <label for="textarea-input" class=" form-control-label">Précision </label>
+                          <p name="textarea-input" id="textarea-input" rows="9" placeholder="Content..." class="form-control">{{ post.precision | safe }}</textarea></p>
+                                  
+
+
+                          <label for="textarea-input" class=" form-control-label">Rapidité </label>
+                          <p name="textarea-input" id="textarea-input" rows="9" placeholder="Content..." class="form-control">{{ post.rapidite | safe }}</textarea></p>
+                                  
+
+
+                          <label for="textarea-input" class=" form-control-label">Dimensions </label>
+                          <p name="textarea-input" id="textarea-input" rows="9" placeholder="Content..." class="form-control">{{ post.dimensions | safe }}</textarea></p>
+                                  
+
+
+
+
+
+
+
+
+
+              
+         
+              
+               
+        
+        
+        
+        
+        
+        
+        
+        
+        
+              </div>
+            </div>
+            
+        
+            <div class="col-md-8 card mb-4  mt-3 ">
+              <div class="card-body">
+                <!-- comments -->
+                <p> Nombre des commentaires pour ce projet est de <strong>{{ comments.count }}</strong>  </p>
+        
+                {% for comment in comments %}
+                <div class="comments" style="padding: 10px;">
+                  <p class="font-weight-bold">
+                    {{ comment.name }}
+                    <span class=" text-muted font-weight-normal">
+                      {{ comment.created_on }}
+                    </span>
+                  </p>
+                  {{ comment.body | linebreaks }}
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      
+      
+      
+      
+      
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+    
+    
+  
+          </div>
+          <div class="col-md-4 sidebar">
+        
+
+            <div class="sidebar-box">
+              <div class="categories">
+                <h3>Categories</h3>
+                <li><a href="{% url 'home' %}"><span><i class="material-icons">home</i></span> Accueil </a></li>
+                <li><a href="{% url 'students:projet_add' %}"> <span><i class="material-icons">computer</i></span>Nouveau projet</a></li>
+                <li><a href="{% url 'students:lanceur_projet_home' %}">Mes Projets <span><i class="material-icons">attachment</i></span></a></li>
+                <li><a href="{% url 'students:collaborations' %}">Mes Proposition de collaborations <span><i class="material-icons">cloud</i></span></a></li>
+                <li><a href="{% url 'students:capteur_add' %}">Mes Capteurs <span><i class="material-icons">traffic</i></span></a></li>
+                <li><a href="{% url 'students:profile' %}">Profile <span><i class="material-icons">person</i></span></a></li>
+                <li><a href="{% url 'logout' %}">Se déconnecter <span><i class="fa fa-sign-out"></i></span></a></li>
+             
+            
+              </div>
+            </div>
+        
+    
+         
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          
+          <a href="https://erpi.univ-lorraine.fr/">                  Copyright &copy;
+            <script>document.write(new Date().getFullYear());</script> All rights reserved | Equipe de Recherche sur les Processus Innovatifs, ERPI </a>
+            
+           
+   
+          </div>
+        </div>
+      
+      </div>
+    </footer>
+
+  </div> <!-- .site-wrap -->
+
+  <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'js/jquery-ui.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+  <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'js/aos.js' %}"></script>
+  <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+  <script src="{% static 'js/jquery.sticky.js' %}"></script>
+  <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+
+
+  <script src="{% static 'js/main.js' %}"></script>
+
+
+</body>
+
+</html>
+
+
+
+
+
+                                  
+                                                                                   
+                                            
+                                            
+                        

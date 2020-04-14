@@ -1,0 +1,128 @@
+
+                          
+                         {% extends "base.html" %}
+
+                         {% block title %} List Forum{% endblock %}
+                         
+                         {% block content %}
+                         <div class="jumbotron">
+                           <h1 style="text-align: center;">ESPACE D'ECHANGES </h1>
+                         
+                             <h2 style="text-align: center;">Vous trouverez ici toutes les demandes / idées de capteurs innovants proposés par des passionnés ou des professionnels !</h2> 
+                            
+                             {% load widget_tweaks %}
+                              
+
+                             <div>
+                             <form method="get">
+                                    
+                                <h6 >Subject</h6>
+                               {% render_field filter.form.subject class="form-control" %}              
+                                        
+             
+                                     <p>
+
+                                     </p>
+                                           <button type="submit" class="btn btn-primary" ><span class="icon-magnifier search-icon"></span>Lancer la recherche<i class="pe-7s-angle-right"></i></button>   
+                                         
+                               
+                                   </form>
+                                  </div>
+                            
+                        
+                            
+                             <ul>
+
+                              <p>
+
+                              </p>
+
+  
+                        
+
+                              {% for user in filter.qs %}
+  
+  
+
+                              <div class="sidebar-box" style=" background-color: whitesmoke ; box-shadow: 2px 2px 15px grey; border-radius: 6px;" >
+                                <div class="jumbotron">
+                                  <a href="{% url 'students:forum-by' user.owner %}">{{user.owner}}</a> | <span style="font-size: 12px;"><i>{{user.created_at}}</i></span><br>
+                               <h1 ><a style="color: black;"href="{% url 'students:forum_detail' user.slug %}">{{user.titre_projet}}</a></h1>
+                               <p>{{user.description_projet}}</p>
+                                    
+                             
+                                    
+                          <p>
+                            
+                          </p>
+                                    <button type="button"  class="btn btn-primary"><a style="color: aliceblue" href="{% url 'students:forum_detail' user.slug %}">Sélectionner</a> </button> 
+        
+                                </div>
+                              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+                              {% empty %}
+  
+                              <p class="text-center">  No data are availbe about this Case Study</p>   
+                                       
+                                
+          
+          
+                                 {% endfor %}
+  
+
+                               
+
+
+
+
+
+
+
+                             
+                             </ul>
+                         </div>
+                         {% endblock%}
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                  
+
+
+                  
+           

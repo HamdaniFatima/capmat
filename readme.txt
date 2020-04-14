@@ -1,0 +1,1 @@
+%systemdrive%%homepath%\my-venv\Scripts\activate.bat
